@@ -1,7 +1,7 @@
 <a href="https://raw.githubusercontent.com/mongoeye/mongoeye/master/_misc/logo_name_small.png?v1" title="logo"><img src="https://raw.githubusercontent.com/mongoeye/mongoeye/master/_misc/logo_name_small.png?v1" width="300"/></a>
 
 
-**Web interface** for mongoeye written in [PHP](http://php.net/) and [Nette framework](https://nette.org/).
+**Web interface** for mongoeye written in [JavaScript](https://www.javascript.com), [PHP](http://php.net) and [Nette framework](https://nette.org).
 
 **WORK IN PROGRESS!**
 
