@@ -1,0 +1,29 @@
+env:
+  browser: true
+  es6: true
+
+extends:
+  - eslint:recommended
+  - plugin:import/errors
+  - plugin:import/warnings
+  - airbnb
+
+parserOptions:
+  sourceType: module
+
+globals: []
+
+indent: 2
+
+rules:
+  func-names: [off]
+  prefer-rest-params: [off]
+  no-underscore-dangle: [off]
+  class-methods-use-this: [off]
+  no-param-reassign: [off]
+  no-plusplus: [off]
+  no-trailing-spaces: [warn]
+  no-undef: [warn]
+  no-unused-vars: [warn, {vars: all, args: none}]
+  no-console: [warn]
+  comma-dangle: [warn]

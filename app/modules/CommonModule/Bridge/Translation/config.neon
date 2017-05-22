@@ -1,0 +1,8 @@
+extensions:
+    translation: Kdyby\Translation\DI\TranslationExtension
+
+translation:
+    dirs:
+        - %appDir%/resources/locales
+    default: sk
+    fallback: [sk]

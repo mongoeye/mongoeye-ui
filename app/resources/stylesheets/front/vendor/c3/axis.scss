@@ -1,0 +1,21 @@
+// sass-lint:disable-all
+.c3-axis-x .tick {
+  fill: mix(black, $text-color, 15%);
+}
+.c3-axis-x-label {
+  fill: mix(black, $text-color, 15%);
+}
+
+.c3-axis-y .tick {
+  fill: mix(black, $text-color, 15%);
+}
+.c3-axis-y-label {
+  fill: mix(black, $text-color, 15%);
+}
+
+.c3-axis-y2 .tick {
+  fill: mix(black, $text-color, 15%);
+}
+.c3-axis-y2-label {
+  fill: mix(black, $text-color, 15%);
+}

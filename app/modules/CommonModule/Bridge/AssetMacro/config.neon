@@ -1,0 +1,5 @@
+assetMacro:
+    versions: %wwwDir%/resources/versions.json
+
+extensions:
+    assetMacro: Webrouse\AssetMacro\DI\Extension

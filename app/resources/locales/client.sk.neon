@@ -1,0 +1,5 @@
+errors:
+    unexpected: Nastala neočakávaná chyba
+    ajax:
+        connection: Došlo k chybe spojenia. Skontrolujte prosím svoje pripojenie k internetu a skúste to znova.
+        unknown: Došlo k chybe pri spracovaní vašej požiadavky. Skúste prosím neskôr.

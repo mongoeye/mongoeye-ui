@@ -1,0 +1,2 @@
+#extensions:
+#    nextras.form: Nextras\Forms\Bridges\NetteDI\FormsExtension

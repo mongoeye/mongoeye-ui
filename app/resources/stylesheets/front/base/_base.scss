@@ -1,0 +1,134 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+
+// Links
+a {
+  color: darken($brand-color, 10%);
+  text-decoration: none;
+
+  @include on-event {
+    color: saturate(lighten($brand-color, 10%), 10%);
+    text-decoration: underline;
+  }
+}
+
+// Horizontal line
+hr {
+  height: rhythm(0.5, $base-font-size);
+  margin: rhythm(0.5, $base-font-size) 0 0;
+  border: 0;
+  border-top: $horizontal-line-size solid $horizontal-line-color;
+  box-sizing: border-box;
+}
+
+// Blockquote
+blockquote {
+  margin-left: rhythm(1, $base-font-size);
+
+  @include respond-to('medium') {
+    margin-left: rhythm(2, $base-font-size);
+  }
+}
+
+// Lists
+ul {
+  list-style: none;
+}
+
+ol {
+  list-style: decimal inside;
+}
+
+ol,
+ul {
+  margin-top: 0;
+  padding-left: 0;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin: rhythm(0.5, $base-font-size) 0 rhythm(0.5, $base-font-size) rhythm(1.5, $base-font-size);
+}
+
+li {
+  margin: 0 0 rhythm(0.5, $base-font-size);
+  padding: 0;
+}
+
+// Preformatted text and code
+code,
+pre {
+  font-family: $code-font-stack;
+  font-weight: $code-font-weight;
+  overflow: auto;
+}
+
+code {
+  margin: 0;
+  padding: rhythm(0.15, $base-font-size) rhythm(0.3, $base-font-size);
+  border: $code-border;
+  border-radius: $code-border-radius;
+  background: $code-background-color;
+  color: $text-color;
+  font-size: 90%;
+  white-space: nowrap;
+}
+
+pre > code {
+  display: inline-block;
+  min-width: 100%;
+  padding: rhythm(0.6, $base-font-size) rhythm(0.8, $base-font-size);
+  white-space: pre;
+  overflow: auto;
+}
+
+// Highlight
+mark {
+  padding: 0 rhythm(0.1, $base-font-size);
+  background-color: $highlight-color;
+  @if (lightness($highlight-color) > 50) {
+    color: black;
+  } @else {
+    color: white;
+  }
+}
+
+// Abbreviation and acronym
+abbr[title],
+acronym[title] {
+  border-bottom: dotted .1em $text-color;
+  text-decoration: none;
+  cursor: help;
+}
+
+// Max-width for big elements
+img,
+svg,
+audio,
+video,
+canvas,
+meter,
+progress,
+iframe {
+  max-width: 100%;
+}
+
+// Full width for media elements
+audio,
+video,
+canvas {
+  width: 100%;
+}
+
+// Figure
+figure {
+  margin: rhythm(2, $base-font-size) rhythm(1, $base-font-size);
+  text-align: center;
+
+  figcaption {
+    text-align: center;
+  }
+}

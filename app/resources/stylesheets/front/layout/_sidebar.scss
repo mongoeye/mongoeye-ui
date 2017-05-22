@@ -1,0 +1,87 @@
+$sidebar-background: darken($brand-secondary-color, 5%);
+$sidebar-active-color: lighten($brand-color, 5%);
+$sidebar-font-size: 13px;
+$border-width: 3px;
+$padding-left: 16px;
+$padding-h: 10px;
+$padding-v: 8px;
+
+.layout-sidebar {
+  background: $sidebar-background;
+
+  .version {
+    padding: 5px 10px;
+    color: lighten($sidebar-background, 70%);
+    font-size: 0.85em;
+    font-weight: 100;
+    text-align: left;
+  }
+
+  ul.db-list {
+    margin: 0;
+    @include adjust-font-size-to($sidebar-font-size);
+
+    li {
+      position: relative;
+      margin: 0 0 12px;
+      line-height: 0.7em;
+    }
+
+    li.sub-active,
+    a.active {
+      background: darken($sidebar-background, 3%);
+    }
+
+    a {
+      display: block;
+      margin: 0;
+      padding: $padding-v $padding-h $padding-v ($padding-h + $padding-left);
+      border-left: solid $border-width transparent;
+      color: lighten($sidebar-background, 60%);
+      text-decoration: none;
+      @include clearfix;
+
+      @include on-event {
+        border-color: mix($sidebar-active-color, $sidebar-background, 70%);
+        background: darken($sidebar-background, 4%);
+        color: mix($sidebar-active-color, $sidebar-background, 90%);
+      }
+
+      &.active {
+        border-color: $sidebar-active-color;
+        background: darken($sidebar-background, 6%);
+        color: $sidebar-active-color;
+
+        .col-name {
+          font-weight: bold;
+        }
+      }
+
+      .info {
+        float: right;
+        color: lighten($sidebar-background, 40%);
+        font-size: 0.8em;
+      }
+    }
+
+    .db-name {
+      font-weight: bold;
+
+      i {
+        position: absolute;
+        top: 6px;
+        left: 10px;
+        margin-right: 5px;
+        font-size: 0.9em;
+      }
+    }
+
+    ul.col-list {
+      margin: 0;
+
+      li {
+        margin: 0;
+      }
+    }
+  }
+}

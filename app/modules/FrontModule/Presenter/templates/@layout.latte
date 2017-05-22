@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head n:block="head">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="msapplication-tap-highlight" content="no" />
+	<title>{$title}</title>
+	{var $iconVersion = 1}
+	<link rel="apple-touch-icon" sizes="180x180" href="{$basePath}/images/icons/apple-touch-icon.png?v={$iconVersion}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{$basePath}/images/icons/favicon-32x32.png?v={$iconVersion}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{$basePath}/images/icons/favicon-16x16.png?v={$iconVersion}">
+	<link rel="manifest" href="{$basePath}/images/icons/manifest.json?v={$iconVersion}">
+	<link rel="mask-icon" href="{$basePath}/images/icons/safari-pinned-tab.svg?v={$iconVersion}" color="#5bbad5">
+	<link rel="shortcut icon" href="{$basePath}/images/icons/favicon.ico?v={$iconVersion}">
+	<meta name="msapplication-config" content="{$basePath}/images/icons/browserconfig.xml?v={$iconVersion}">
+	<meta name="theme-color" content="#2f2d2b">
+	<link rel="stylesheet" href="{asset resources/front.css}">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin-ext" rel="stylesheet">
+</head>
+<body data-basepath="{$basePath}"
+	  data-loader="
+{asset 'resources/localization.js'};
+locale:{asset "resources/locales/$locale.js"};
+{asset 'resources/vendor.js'};
+{asset 'resources/main.js'}">
+	{*<script src="https://jsconsole.com/js/remote.js?b63fd603-e9fc-474a-9ed0-4e54e17da2ab"></script>*}
+	<script src="{asset resources/loader.js}"></script>
+
+	{* Loading message *}
+	<div id="loader"><div class="message"></div></div>
+
+	{* Flash messages *}
+	<ul n:flashes></ul>
+
+	<div class="layout" n:inner-block="body" n:snippet="body">
+		{* Header *}
+		<header class="layout-header">
+            {* Logo *}
+			<a class="logo" n:href="Default:default">
+				<img alt="MongoEYE" src="{$basePath}/images/logo.svg">
+			</a>
+            {* User *}
+			<div class="header-user">
+				<span class="small"><span class="small-title">connection</span>{$host}</span>
+				<a class="logout" n:href="Sign:out" title="logout">
+					<i class="fa fa-sign-out" aria-hidden="true"></i>
+				</a>
+			</div>
+            {* Header data *}
+			<div class="transition-auto transition-slide" n:inner-block="header" n:snippet="header">
+				{* Title *}
+				<div class="header-title" n:inner-block="header-title"></div>
+				{* Stats *}
+				<div class="header-stats" n:inner-block="header-stats"></div>
+			</div>
+		</header>
+
+        {* Main area *}
+		<div class="layout-body">
+            {* Main content *}
+			<main class="layout-main transition-auto transition-slide" n:inner-block="main" n:snippet="main">main</main>
+
+			{* Side navigation *}
+			<aside class="layout-sidebar" n:snippet="sidebar">
+				<div class="version">MongoDB {$version}</div>
+				{control collectionsMenu}
+			</aside>
+		</div>
+	</div>
+</body>
+</html>

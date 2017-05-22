@@ -1,0 +1,18 @@
+{block header-stats}
+{dump $stats}
+{* Documents *}
+<span class="stats-title">documents </span>
+<span class="big">{$stats['docs']['count']}</span>
+<span class="small"><span class="small-title">total size</span>{$stats['size']}</span>
+<span class="small"><span class="small-title">storage</span>{$stats['storageSize']}</span>
+<span class="small"><span class="small-title">average</span>{$stats['docs']['avgSize']}</span>
+
+<span class="sep"></span>
+
+{* Indexes *}
+<span class="stats-title">indexes </span>
+<span class="big">{$stats['indexes']['count']}</span>
+<span class="small"><span class="small-title">total size</span>{$stats['indexes']['totalSize']}</span>
+<span class="small"><span class="small-title">average</span>{$stats['indexes']['avgSize']}</span>
+
+<span class="sep"></span>

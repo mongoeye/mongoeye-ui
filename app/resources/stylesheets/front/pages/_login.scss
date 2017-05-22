@@ -1,0 +1,30 @@
+.login-section {
+  width: 400px;
+  max-width: 100%;
+  margin: 10vh auto;
+
+  img {
+    display: block;
+    width: 250px;
+    margin: 10px auto;
+  }
+
+  .form {
+    min-height: 100px;
+    padding: 10px 10px 1px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+  }
+
+  form {
+    margin: 0;
+  }
+
+  form table {
+    margin: 10px auto;
+
+    th {
+      text-align: right;
+    }
+  }
+}

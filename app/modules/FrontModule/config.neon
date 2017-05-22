@@ -1,0 +1,7 @@
+services:
+    - App\Modules\FrontModule\Service\Authenticator
+    - App\Modules\FrontModule\Service\Connection
+    - App\Modules\FrontModule\Control\CollectionsMenu\CollectionsMenuFactory
+    - App\Modules\FrontModule\Control\ActionsMenu\ActionsMenuFactory
+    - App\Modules\FrontModule\Forms\FormFactory
+    - App\Modules\FrontModule\Forms\SignInFormFactory

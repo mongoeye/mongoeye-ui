@@ -1,0 +1,18 @@
+includes:
+    - Bridge/Translation/config.neon
+    - Bridge/AssetMacro/config.neon
+    - Bridge/Nittro/config.neon
+    - Bridge/Menu/config.neon
+    - Bridge/NextrasForm/config.neon
+
+application:
+	errorPresenter: Common:Error
+	mapping:
+		*: App\Modules\*Module\Presenters\*Presenter
+
+session:
+	expiration: 2 days
+	savePath: %tempDir%/sessions
+
+services:
+    router: App\Modules\CommonModule\Service\RouterFactory::createRouter

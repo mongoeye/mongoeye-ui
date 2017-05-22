@@ -1,0 +1,23 @@
+<ul class="db-list" n:if="$menu->hasVisualItems()" n:inner-foreach="$menu->getItems() as $item">
+    <li n:if="$item->isVisual()" n:class="$item->isActive() ? sub-active">
+        {var $subMenu = $item}
+        {php $subActive = false; foreach($subMenu->getItems() as $i) { $subActive = $i->isActive() || $subActive; } }
+        <a n:class="db, $item->isActive() && !$subActive ? active" href="{$item->getLink()}">
+            <span class="db-name"><i class="fa fa-database" aria-hidden="true"></i> {$item->getTitle()}</span>
+            <span class="info" title="storage size">{$item->getData('size')}</span>
+        </a>
+        <ul class="col-list" n:if="$subMenu->hasVisualItems()" n:inner-foreach="$subMenu->getItems() as $subItem">
+            <li n:if="$subItem->isVisual()">
+                <a n:class="col, $subItem->isActive() ? active" href="{$subItem->getLink()}">
+                    <span class="col-name">{$subItem->getTitle()}</span>
+                    <span class="info">
+                        <span title="count">{$subItem->getData('count')}</span>
+                        /
+                        <span title="size">{$subItem->getData('size')}</span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+    </li>
+</ul>

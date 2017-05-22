@@ -1,0 +1,14 @@
+{block header-title}{include parts/title.latte}{/block}
+{block header-stats}{include parts/stats.latte}{/block}
+
+{block main}
+{control actionsMenu}
+<div class="query">
+    {form queryForm}
+        <div class="inputs">
+            <div class="query-input">{label query}{input query}</div>
+            <div class="limit-input">{label limit}{input limit}</div>
+            <div class="apply-input">{input apply}</div>
+        </div>
+    {/form}
+</div>

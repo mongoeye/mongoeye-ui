@@ -1,0 +1,7 @@
+<ul class="action-menu" n:if="$menu->hasVisualItems()" n:inner-foreach="$menu->getItems() as $item">
+    <li n:if="$item->isVisual()" n:class="$item->isActive() ? active">
+        <a n:class="db, $item->isActive() ? active" href="{$item->getLink()}">
+            {$item->getTitle()}
+        </a>
+    </li>
+</ul>

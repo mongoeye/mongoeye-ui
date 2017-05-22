@@ -1,0 +1,14 @@
+version: '2'
+services:
+  php:
+    image: php_dipl4
+    ports:
+      - "9010:80"
+    volumes:
+      - "./:/data"
+    environment:
+      WWW_DIR: "/data/web"
+      PHP_DEBUG_MODE: "true"
+      PHP_XDEBUG_CONNECT_BACK: "false"
+      PHP_XDEBUG_REMOTE_HOST: "192.168.55.5"
+      PHP_XDEBUG_REMOTE_PORT: "9000"

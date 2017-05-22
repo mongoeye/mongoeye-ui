@@ -1,0 +1,163 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the forms of the site/application.
+// -----------------------------------------------------------------------------
+
+label {
+  @include adjust-font-size-to($input-font-size);
+  display: block;
+  margin: 0 0 rhythm(.25, $input-font-size);
+  font-weight: normal;
+}
+
+fieldset {
+  padding: 0;
+  border-width: 0;
+}
+
+legend {
+  @include adjust-font-size-to($legend-font-size);
+  display: block;
+  width: 100%;
+  margin: 0 0 rhythm(0.5, $legend-font-size);
+  border-bottom: solid 1px $input-border-color;
+  font-weight: 600;
+}
+
+
+input[type='email'],
+input[type='number'],
+input[type='search'],
+input[type='text'],
+input[type='tel'],
+input[type='url'],
+input[type='password'],
+input[type='date'],
+input[type='month'],
+input[type='week'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='color'],
+textarea,
+select {
+  @include adjust-font-size-to($input-font-size);
+  width: $input-width;
+  height: $input-height;
+  margin: 0 0 rhythm(1, $input-font-size);
+  padding: rhythm(0.2, $input-font-size) rhythm(0.4, $input-font-size);
+  border: 1px solid $input-border-color;
+  background-color: $input-background-color;
+  color: $input-text-color;
+  box-shadow: none;
+  appearance: none; // Removes awkward default styles on some inputs for iOS
+
+  &:focus {
+    border: 1px solid $input-focus-color;
+    outline: 0;
+  }
+
+  &::placeholder {
+    color: tint($input-text-color, 60%);
+  }
+}
+
+input[type='range'] {
+  width: $input-width;
+}
+
+textarea {
+  min-height: rhythm(3, $input-font-size);
+  padding: rhythm(0.3, $input-font-size);
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  display: inline;
+  margin-top: -0.1em;
+  margin-right: 0.3em;
+  vertical-align: middle;
+}
+
+input[disabled] {
+  border-color: $input-disabled-border-color;
+  background-color: $input-disabled-background-color;
+  color: $input-disabled-text-color;
+  cursor: not-allowed;
+
+  @include on-event(true) {
+    border-color: $input-disabled-border-color;
+    background-color: $input-disabled-background-color;
+    color: $input-disabled-text-color;
+  }
+}
+
+// Required
+.required label {
+  font-weight: bold;
+}
+//.required label::after,
+//label.required::after {
+//  display: inline;
+//  color: #e32;
+//  font-size: 1.2em;
+//  content: ' *';
+//}
+
+
+// Form in table
+form table {
+  td,
+  th {
+    height: rhythm(1.5, $base-font-size);
+    padding: rhythm(0.4, $input-font-size) rhythm(0.5, $input-font-size);
+    border: 0;
+  }
+
+  th {
+    padding-right: 0;
+    vertical-align: top;
+
+    label {
+      margin-top: $input-height / 4;
+    }
+  }
+
+  input[type='email'],
+  input[type='number'],
+  input[type='search'],
+  input[type='text'],
+  input[type='tel'],
+  input[type='url'],
+  input[type='password'],
+  input[type='date'],
+  input[type='month'],
+  input[type='week'],
+  input[type='datetime'],
+  input[type='datetime-local'],
+  input[type='color'],
+  textarea,
+  select {
+    margin-bottom: 0;
+  }
+
+  label {
+    margin-bottom: 0;
+  }
+}
+
+form .error {
+  display: block;
+  max-width: 100%;
+  padding: 5px 0 3px;
+  color: #e11000;
+  font-size: 85%;
+  font-weight: 600;
+}
+
+form ul.error {
+  margin: 10px 0 0;
+  text-align: center;
+
+  li {
+    margin: 0;
+  }
+}

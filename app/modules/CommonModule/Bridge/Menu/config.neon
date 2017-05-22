@@ -1,0 +1,6 @@
+extensions:
+    menu: DK\Menu\DI\Extension
+
+menu:
+    default:
+        translator: true

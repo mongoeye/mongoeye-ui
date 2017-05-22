@@ -1,0 +1,73 @@
+/* Make clicks pass-through */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $progress-bar-height;
+  background: $progress-color;
+  z-index: 1031;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0;
+  width: 100px;
+  height: 100%;
+  transform: rotate(3deg) translate(0, -4px);
+  box-shadow: 0 0 10px $progress-color, 0 0 5px $progress-color;
+  opacity: 1;
+}
+
+/////* Remove these to get rid of the spinner */
+////@include respond-to('medium-landscape') {
+//#nprogress .spinner {
+//  display: block;
+//  position: fixed;
+//  top: $progress-spinner-size;
+//  right: 50%;
+//  margin-right: -$progress-spinner-size / 2;
+//  z-index: 1031;
+//
+//  @include respond-to('medium-landscape') {
+//    top: $progress-spinner-size * 2;
+//    right: $progress-spinner-size;
+//  }
+//}
+//
+//#nprogress .spinner-icon {
+//  width: $progress-spinner-size + 3px;
+//  height: $progress-spinner-size + 3px;
+//  border: solid 2px transparent;
+//  border-radius: 50%;
+//  border-top-color: $progress-color;
+//  border-left-color: $progress-color;
+//  box-sizing: border-box;
+//  animation: nprogress-spinner 400ms linear infinite;
+//}
+//
+//.nprogress-custom-parent {
+//  position: relative;
+//  overflow: hidden;
+//}
+//
+//.nprogress-custom-parent #nprogress .spinner,
+//.nprogress-custom-parent #nprogress .bar {
+//  position: absolute;
+//}
+//
+//@keyframes nprogress-spinner {
+//  0% {
+//    transform: rotate(0deg);
+//  }
+//
+//  100% {
+//    transform: rotate(360deg);
+//  }
+//}

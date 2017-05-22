@@ -1,0 +1,7 @@
+#
+# WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+# https://nette.org/security-warning
+#
+includes:
+    - ../modules/CommonModule/config.neon
+    - ../modules/FrontModule/config.neon

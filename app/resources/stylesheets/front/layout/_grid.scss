@@ -1,0 +1,160 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the grid system
+// -----------------------------------------------------------------------------
+
+html,
+body {
+  height: 100%;
+  background: $background;
+  overflow-x: hidden;
+}
+
+// @see https://github.com/philipwalton/solved-by-flexbox/blob/master/assets/css/components/holy-grail.css
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.layout-header {
+  flex: none;
+}
+
+.layout-body {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+}
+
+.layout-main {
+  //
+}
+
+.layout-sidebar {
+  order: -1;
+  color: white;
+}
+
+.query {
+  padding-bottom: 10px;
+  background: rgba(255, 255, 255, 0.6);
+
+  form {
+    margin: 0;
+  }
+
+  .inputs {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: row;
+    padding: 5px;
+
+    label {
+      margin: 2px;
+      font-size: 0.8em;
+      font-weight: 500;
+    }
+
+    input {
+      height: 2em;
+      margin: 0;
+      font-size: 0.9em;
+      line-height: 2em;
+    }
+
+    input[type='submit'] {
+      margin-top: 2em;
+      font-size: 0.8em;
+    }
+  }
+
+  .query-input {
+    flex: 1;
+    margin: 5px;
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  .limit-input {
+    flex: 0;
+    margin: 5px;
+
+    input {
+      width: 70px;
+      text-align: right;
+      box-sizing: border-box;
+    }
+  }
+
+  .apply-input {
+    flex: 0.05;
+    margin: 5px;
+  }
+}
+
+.action-menu {
+  margin: 0;
+  @include clearfix;
+
+  li {
+    display: inline-block;
+    margin: 0;
+    float: left;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    &:hover a {
+      color: black;
+      opacity: 1;
+    }
+
+    &.active {
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    &.active a {
+      opacity: 1;
+    }
+  }
+
+  a {
+    display: block;
+    padding: 10px;
+    font-size: 0.9em;
+    font-weight: 500;
+    line-height: 1.5em;
+    text-decoration: none;
+    opacity: 0.6;
+  }
+}
+
+.empty-title {
+  width: 60%;
+  margin: 0 auto;
+  padding-top: 8%;
+  color: #949596;
+  font-size: 1.2em;
+  font-weight: 100;
+  line-height: 2em;
+  text-align: center;
+}
+
+@include respond-to('medium-landscape') {
+  .layout-body {
+    flex-direction: row;
+  }
+
+  .layout-main {
+    flex: 1;
+    margin: 0;
+  }
+
+  .layout-sidebar {
+    flex: 0 0 17em;
+  }
+}

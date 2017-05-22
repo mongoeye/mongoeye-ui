@@ -1,0 +1,49 @@
+// -----------------------------------------------------------------------------
+// This file contains typography styles.
+// -----------------------------------------------------------------------------
+
+// Compass: setup vertical rythm
+@include establish-baseline;
+
+// Base font
+body {
+  color: $text-color;
+  font-family: $text-font-stack;
+}
+
+// Headlines
+%headline {
+  color: $headline-color;
+  font-family: $headline-font-stack;
+}
+
+// h1 ... h6
+@for $i from 1 through 6 {
+  h#{$i} {
+    @extend %headline;
+    $font-size: map-get(map-get($headline-font-config, h#{$i}), font-size);
+    $font-wight: map-get(map-get($headline-font-config, h#{$i}), font-weight);
+    $letter-spacing: map-get(map-get($headline-font-config, h#{$i}), letter-spacing);
+    @include adjust-font-size-to($font-size);
+    font-weight: $font-wight;
+    letter-spacing: $letter-spacing;
+    @include rhythm(0, 1, 0, 0.5, $font-size);
+  }
+}
+
+// Elements spacing
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+  @include rhythm(0, 0, 0, 1);
+}
+
+section {
+  @include rhythm(0, 0, 0.5, 0);
+}

@@ -1,0 +1,32 @@
+// sass-lint:disable-all
+.c3 svg {
+  font: 10px sans-serif;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.c3 path, .c3 line {
+  fill: none;
+  stroke: transparentize($text-color, 0.4);
+}
+.c3 text {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.c3-legend-item-tile,
+.c3-xgrid-focus,
+.c3-ygrid,
+.c3-event-rect,
+.c3-bars path {
+  shape-rendering: crispEdges;
+}
+
+.c3-chart-arc path {
+  stroke: $background;
+
+}
+.c3-chart-arc text {
+  fill: #000;
+  font-size: 12px;
+  text-shadow: #ffffff 0 0 6px;
+}

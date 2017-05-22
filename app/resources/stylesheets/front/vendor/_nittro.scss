@@ -1,0 +1,90 @@
+.transition-fade {
+  &.nittro-transition-middle {
+    transition: none;
+    opacity: 0;
+  }
+
+  &.nittro-transition-active {
+    transition: opacity .3s;
+  }
+
+  &.nittro-transition-out,
+  &.nittro-transition-middle {
+    opacity: 0;
+  }
+
+  &.nittro-transition-in {
+    opacity: 1;
+  }
+}
+
+.transition-slide {
+  transform-origin: center top;
+
+  &.nittro-transition-active {
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  &.nittro-transition-out {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+
+  &.nittro-transition-middle {
+    transform: translateX(-50px);
+    transition: none;
+    opacity: 0;
+  }
+
+  &.nittro-transition-in {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.transition-dim {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(0, 0);
+    border-radius: inherit;
+    background: rgba(0, 0, 0, 0.6);
+    content: '';
+    opacity: 0;
+    z-index: 9999;
+  }
+
+  &.nittro-transition-active::before,
+  &.nittro-transition-middle::before {
+    transform: none;
+  }
+
+  &.nittro-transition-out {
+    transition: opacity .3s;
+  }
+
+  &.nittro-transition-out::before {
+    transition: opacity .3s;
+    opacity: 1;
+  }
+
+  &.nittro-transition-middle,
+  &.nittro-transition-middle::before {
+    transition: none;
+    opacity: 1;
+  }
+
+  &.nittro-transition-in {
+    transition: opacity .2s;
+  }
+
+  &.nittro-transition-in::before {
+    transition: opacity .2s;
+    opacity: 0;
+  }
+}

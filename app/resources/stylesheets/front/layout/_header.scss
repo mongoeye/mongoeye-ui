@@ -1,0 +1,103 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+.layout-header {
+  height: $header-height;
+  border-bottom: solid 1px #ddd;
+  background: $header-background;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  @include clearfix;
+
+  .logo {
+    display: block;
+    width: 17em;
+    height: 100%;
+    padding-left: 5px;
+    float: left;
+    box-sizing: border-box;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .header-title,
+  .header-stats,
+  .header-user {
+    display: block;
+    margin-top: $header-height * 0.1;
+    float: left;
+    line-height: $header-height * 0.9;
+    vertical-align: middle;
+  }
+
+  .header-title {
+    padding-left: 5px;
+    float: left;
+  }
+
+  .header-stats {
+    padding-left: 10px;
+    float: right;
+  }
+
+  .header-user {
+    float: right;
+
+    .small {
+      margin-right: 5px;
+    }
+
+    .logout {
+      position: relative;
+      top: -5px;
+      margin-right: 15px;
+      font-size: 1.5em;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+  }
+
+  .title {
+    @include adjust-font-size-to($base-font-size * 1.5);
+    display: inline-block;
+    padding: 0 5px;
+  }
+
+  .big {
+    @include adjust-font-size-to($base-font-size * 1.7);
+    display: inline-block;
+    padding: 0 5px;
+  }
+
+  .small {
+    @include adjust-font-size-to($base-font-size * 0.85);
+    display: inline-block;
+    padding: 0 5px;
+    text-align: right;
+  }
+
+  .small-title {
+    display: block;
+    color: mix($text-color, $header-background, 50%);
+    font-size: 0.85em;
+    line-height: 0.5em;
+  }
+
+  .stats-title {
+    @include adjust-font-size-to($base-font-size * 0.85);
+    display: inline-block;
+    padding: 0 2px;
+    color: mix($text-color, $header-background, 50%);
+    text-transform: uppercase;
+  }
+
+  .sep {
+    display: inline-block;
+    width: $header-separator-width / 2;
+    height: $header-separator-height;
+    margin-right: $header-separator-width / 2;
+    margin-bottom: -$header-separator-height / 4;
+    border-right: solid 1px mix($text-color, $header-background, 20%);
+  }
+}

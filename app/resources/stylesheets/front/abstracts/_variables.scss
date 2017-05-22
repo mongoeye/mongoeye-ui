@@ -1,0 +1,137 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+/// Breakpoints map ------------------------------------------------------------
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+@import '../../../../../node_modules/breakpoint-sass/stylesheets/breakpoint';
+@include add-breakpoint('small', 320px);
+@include add-breakpoint('small-portrait', 320px (orientation portrait));
+@include add-breakpoint('small-landscape', 320px (orientation landscape));
+@include add-breakpoint('medium', 910px);
+@include add-breakpoint('medium-portrait', 910px (orientation portrait));
+@include add-breakpoint('medium-landscape', 910px (orientation landscape));
+@include add-breakpoint('large', 1024px);
+@include add-breakpoint('large-portrait', 1024px (orientation portrait));
+@include add-breakpoint('large-landscape', 1024px (orientation landscape));
+
+/// Fonts family and color -----------------------------------------------------
+/// Regular font family
+$text-font-stack: 'Roboto', sans-serif;
+
+/// Headline font family
+$headline-font-stack: 'Roboto', sans-serif;
+
+/// Code (monospace) font family
+$code-font-stack: Consolas, monaco, monospace;
+
+/// Background
+$background: #efeae3;
+
+/// Headline color
+$headline-color: rgb(34, 18, 12);
+
+/// Main brand color
+$brand-color: rgb(44, 171, 212);
+
+/// Secondary brand color
+$brand-secondary-color: rgb(56, 63, 72);
+
+/// Text color
+$text-color: $brand-secondary-color;
+
+/// Highlight color
+$highlight-color: lighten($brand-color, 20%);
+
+/// Light grey
+$light-grey: rgb(237, 237, 237);
+
+/// Medium grey
+$mid-grey: rgb(153, 153, 153);
+
+/// Dark grey
+$dark-grey: rgb(68, 68, 68);
+
+/// Compass vertical rhythm configuration --------------------------------------
+$base-font-size: 15px;
+$base-line-height: $base-font-size * 1.6;
+$round-to-nearest-half-line: true;
+
+/// Headlines configuration ----------------------------------------------------
+/// ... px are transferred to em in base/_typography.scss
+$headline-font-weight: 300;
+$headline-font-config: (
+  'h1': (font-size: $base-font-size * 3, letter-spacing: -.02em, font-weight: $headline-font-weight),
+  'h2': (font-size: $base-font-size * 2.5, letter-spacing: -.02em, font-weight: $headline-font-weight),
+  'h3': (font-size: $base-font-size * 2, letter-spacing: -.02em, font-weight: $headline-font-weight),
+  'h4': (font-size: $base-font-size * 1.8, letter-spacing: -.01em, font-weight: $headline-font-weight),
+  'h5': (font-size: $base-font-size * 1.5, letter-spacing: 0, font-weight: $headline-font-weight),
+  'h6': (font-size: $base-font-size * 1.25, letter-spacing: 0, font-weight: $headline-font-weight),
+);
+
+/// NProgress
+$progress-bar-height: 2px;
+$progress-spinner-size: 15px;
+$progress-color: $brand-color;
+
+/// Flash messages
+$flash-message-font-size: 0.95em;
+$flash-message-height: 2.5em;
+$flash-message-line-height: 1.5em;
+$flash-message-side-padding: 1em;
+$flash-message-text-color: #333;
+$flash-message-icon-color: #fff;
+$flash-message-types: (
+  'info': #3aa5dd,
+  'success': #17bc68,
+  'warning': #fed40e,
+  'error': #e0282c,
+);
+
+/// Header ---------------------------------------------------------------------
+$header-height: 60px;
+$header-separator-height: $header-height * 0.5;
+$header-separator-width: $header-height * 0.4;
+$header-background: white;
+
+/// Forms ----------------------------------------------------------------------
+$legend-font-size: $base-font-size;
+$input-font-size: $base-font-size;
+$input-width: 200px;
+$input-height: rhythm(1, $base-font-size);
+$input-text-color: $text-color;
+$input-background-color: rgba(255, 255, 255, 0.8);
+$input-focus-color: lighten($brand-color, 30%);
+$input-border-color: rgb(230, 230, 230);
+$input-disabled-background-color: $light-grey;
+$input-disabled-text-color: darken($input-disabled-background-color, 20%);
+$input-disabled-border-color: shade($input-disabled-background-color, 5%);
+
+/// Buttons --------------------------------------------------------------------
+$button-font-size: 11px;
+$button-font-weight: bold;
+$button-letter-spacing: .1em;
+$button-background-color: white;
+$button-text-color: #555;
+$button-border-color: #ccc;
+$button-border-radius: 2px;
+$button-primary-background-color: $brand-color;
+$button-primary-text-color: white;
+$button-primary-border-color: shade($button-primary-background-color, 5%);
+
+/// Code block -----------------------------------------------------------------
+$code-background-color: rgb(241, 241, 241);
+$code-border: 1px solid darken($code-background-color, 7%);
+$code-border-radius: 4px;
+$code-font-weight: normal;
+
+/// Horizontal line ------------------------------------------------------------
+$horizontal-line-size: 1px;
+$horizontal-line-color: #e1e1e1;
+
+/// Base url -------------------------------------------------------------------
+/// @type String
+/// @example scss - When using a CDN
+///   $base-url: 'http://cdn.example.com/assets/';
+$base-url: '/resources/';

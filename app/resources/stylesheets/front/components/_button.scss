@@ -1,0 +1,57 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+.button,
+button,
+input[type='submit'],
+input[type='reset'],
+input[type='button'] {
+  @include adjust-font-size-to($button-font-size, 1.5);
+  display: inline-block;
+  margin: 0 0 rhythm(0.5, $base-font-size);
+  padding: 0 rhythm(1, $button-font-size);
+  border: 1px solid $button-border-color;
+  border-radius: $button-border-radius;
+  background-color: $button-background-color;
+  color: $button-text-color;
+  font-weight: $button-font-weight;
+  letter-spacing: $button-letter-spacing;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  vertical-align: middle;
+  box-sizing: border-box;
+
+  @include on-event {
+    border-color: shade($button-border-color, 15%);
+    outline: 0;
+    background-color: shade($button-background-color, 2%);
+    color: shade($button-text-color, 30%);
+    text-decoration: none;
+  }
+}
+
+input[type='submit'],
+.button.button-primary {
+  border-color: $button-primary-border-color;
+  background-color: $button-primary-background-color;
+  color: $button-primary-text-color;
+
+  @include on-event {
+    border-color: shade($button-primary-border-color, 10%);
+    background-color: shade($button-primary-background-color, 10%);
+    color: $button-primary-text-color;
+  }
+}
+
+input[type='submit'][disabled],
+.button.button-disabled {
+  @extend input[disabled];
+
+  @include on-event {
+    @extend input[disabled]:hover;
+  }
+}

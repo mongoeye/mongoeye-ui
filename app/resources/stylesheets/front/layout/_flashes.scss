@@ -1,0 +1,80 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the flash messages.
+// -----------------------------------------------------------------------------
+$flash-vert-padding: ($flash-message-height - $flash-message-line-height) / 2;
+
+.nittro-flash {
+  position: relative;
+  margin: 0.4em 0 0;
+  padding: $flash-vert-padding $flash-message-side-padding;
+  transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  background: white;
+  color: $flash-message-text-color;
+  font-size: $flash-message-font-size;
+  line-height: $flash-message-line-height;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.12), 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.nittro-flash-plain {
+  white-space: pre-line;
+}
+
+.nittro-flash-show {
+  margin-top: -2.5em;
+  transition: none;
+  opacity: 0;
+}
+
+.nittro-flash-hide {
+  margin-top: -2.5em;
+  transition: all 300ms linear;
+  opacity: 0;
+}
+
+#flashes,
+.nittro-flash-global-holder {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 0;
+  overflow: visible;
+  z-index: 1000;
+
+  .nittro-flash {
+    flex: 0 0 auto;
+    min-width: 30vw;
+    max-width: 90vw;
+    text-align: center;
+  }
+}
+
+%nittro-flasho-with-icon {
+  padding-left: $flash-message-height + $flash-message-side-padding;
+
+  &::before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $flash-message-height;
+    height: 100%;
+    padding: $flash-vert-padding 0;
+    color: $flash-message-icon-color;
+    content: 'x';
+  }
+}
+
+@each $name, $color in $flash-message-types {
+  .nittro-flash-#{$name} {
+    @extend %nittro-flasho-with-icon;
+
+    &::before {
+      background: $color;
+    }
+  }
+}
