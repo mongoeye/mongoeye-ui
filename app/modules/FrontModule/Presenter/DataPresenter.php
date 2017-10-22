@@ -2,6 +2,7 @@
 
 namespace App\Modules\FrontModule\Presenters;
 
+use App\Modules\FrontModule\Security\DbIdentity;
 use App\Modules\FrontModule\Service\Connection;
 use Nette\Application\Responses\TextResponse;
 use Nette\InvalidStateException;
@@ -37,17 +38,18 @@ class DataPresenter extends BasePresenter
 		$query  = addslashes($this->getParameter('q'));
 		$limit = addslashes($this->getParameter('l'));
 
-		$path .= "-u admin -p 12345 --host \"$host\" --db \"$db\" --col \"$col\" --format json --full -l $limit --query \"$query\" --max-depth 5";
+		/** @var DbIdentity $identity */
+		$identity = $this->user->getIdentity();
+		$user = addslashes($identity->getUsername());
+		$password = addslashes($identity->getPassword());
+		$authDb = addslashes($identity->getAuthDb()) ?: 'admin';
+
+		$path .= "-u \"$user\" -p \"$password\" --auth-db \"$authDb\" --host \"$host\" --db \"$db\" --col \"$col\" --format json --full --scope first:$limit --query \"$query\" --depth 5";
 
 		$process = new Process($path);
 		$process->run();
 
-		if (!$process->isSuccessful()) {
-			throw new ProcessFailedException($process);
-		}
-
-		$output = $process->getOutput();
-
+		$output = $process->isSuccessful() ? $process->getOutput() : '[]';
 		$this->getHttpResponse()->setContentType('application/json');
 		$this->sendResponse(new TextResponse($output));
 	}

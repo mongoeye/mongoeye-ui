@@ -81,6 +81,20 @@ class DbIdentity implements IIdentity
 	/**
 	 * @return string
 	 */
+	public function getPassword() {
+		return $this->password;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getAuthDb() {
+		return $this->authDb;
+	}
+
+	/**
+	 * @return string
+	 */
 	public function getUri() {
 		return $this->uri;
 	}

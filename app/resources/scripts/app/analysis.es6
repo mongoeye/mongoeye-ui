@@ -70,7 +70,7 @@ export default class Analysis {
     let payload = response.getPayload();
     this._.data = {};
     this._.tree = {
-      count: payload['processedDocs'],
+      count: payload['analyzedDocs'],
       children: {},
     };
 
