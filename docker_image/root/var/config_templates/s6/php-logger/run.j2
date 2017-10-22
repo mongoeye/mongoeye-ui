@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+rm -Rf "$PHP_LOG_FILE"
+mkdir -p `dirname $PHP_LOG_FILE`
+mkfifo "$PHP_LOG_FILE"
+chown "$PHP_FPM_USER:$PHP_FPM_GROUP" "$PHP_LOG_FILE"
+
+echo "\n" 1>&3 # service ready
+exec cat <> "$PHP_LOG_FILE" | sed -u -r 's/^\[[^.]*\] ?(PHP)? ?//g' | /etc/s6/log php

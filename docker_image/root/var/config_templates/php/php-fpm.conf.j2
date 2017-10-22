@@ -1,0 +1,46 @@
+[global]
+log_level = {{ .PHP_FPM_LOG_LEVEL }}
+error_log = {{ .PHP_FPM_ERROR_LOG }}
+syslog.ident = php-fpm
+daemonize = no
+
+[www]
+access.log = {{ .PHP_FPM_ACCESS_LOG }}
+
+user = {{ .PHP_FPM_USER }}
+group = {{ .PHP_FPM_GROUP }}
+
+{{ if eq .PHP_FPM_USE_SOCKET "true" }}
+listen = {{ .PHP_FPM_SOCKET_PATH }}
+{{ else }}
+listen = 127.0.0.1:{{ .PHP_FPM_PORT }}
+{{ end }}
+listen.owner = www-data
+listen.group = www-data
+listen.mode  = 0600
+
+; The number of child processes is set dynamically
+pm = dynamic
+
+; The number of child processes to be created when pm is set to static
+; and the maximum number of child processes to be created when pm is set to dynamic.
+; This option is mandatory.
+pm.max_children = {{ .PHP_PM_MAX_CHILDREN }}
+
+; The number of child processes created on startup. Used only when pm is set to dynamic.
+pm.start_servers = {{ .PHP_PM_START_SERVERS }}
+
+; The desired minimum number of idle server processes. Used only when pm is set to dynamic. Also mandatory in this case.
+pm.min_spare_servers = {{ .PHP_PM_MIN_SPARE_SERVERS }}
+
+; The desired maximum number of idle server processes. Used only when pm is set to dynamic. Also mandatory in this case.
+pm.max_spare_servers = {{ .PHP_PM_MAX_SPARE_SERVERS }}
+
+; The number of requests each child process should execute before respawning.
+; This can be useful to work around memory leaks in 3rd party libraries.
+pm.max_requests = {{ .PHP_PM_MAX_REQUESTS }}
+
+clear_env = no
+
+; Ensure worker stdout and stderr are sent to the main error log.
+catch_workers_output = yes

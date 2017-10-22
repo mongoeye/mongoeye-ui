@@ -1,0 +1,52 @@
+index   index.php index.html;
+
+# proxy buffers
+proxy_buffer_size         128k;
+proxy_buffers           4 256k;
+proxy_busy_buffers_size   256k;
+
+# fastcgi buffers
+# http://stackoverflow.com/questions/8772015/502-gateway-errors-under-high-load-nginx-php-fpm
+fastcgi_buffers       256 16k;
+fastcgi_max_temp_file_size  0;
+
+fastcgi_buffer_size       32k;
+fastcgi_intercept_errors  off;
+fastcgi_read_timeout      600;
+
+client_body_in_file_only clean;
+client_body_buffer_size 32K;
+
+send_timeout 1024s;
+
+location ~ [^/]\.php(/|$) { # main block with PHP processing
+        fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+
+        {{ if eq .PHP_FPM_USE_SOCKET "true" }}
+        fastcgi_pass    unix:{{ .PHP_FPM_SOCKET_PATH }};
+        {{ else }}
+        fastcgi_pass    127.0.0.1:{{ .PHP_FPM_PORT }};
+        {{ end }}
+        fastcgi_index   index.php;
+        include         fastcgi.conf;
+
+        # Mitigate https://httpoxy.org/ vulnerabilities
+        fastcgi_param   HTTP_PROXY "";
+        fastcgi_param   PATH_INFO $fastcgi_path_info;
+        fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+        try_files $uri =404;
+}
+
+location ~* \.(png|gif|jpg|jpeg|css|js|swf|ico|txt|bmp|pdf|doc|docx|ppt|pptx|zip)$ {
+    access_log off;
+    expires 30d;
+}
+
+location ~ /\.(ht|gitignore) { # deny access to .htaccess files, if Apache's document root concurs with nginx's one
+    deny all;
+}
+
+location = /robots.txt  { access_log off; log_not_found off; }
+location = /humans.txt  { access_log off; log_not_found off; }
+location = /favicon.ico { access_log off; log_not_found off; }

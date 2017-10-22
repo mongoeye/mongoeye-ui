@@ -1,0 +1,6 @@
+#!/bin/sh
+
+s6-svc -wD -d -T $NGINX_SHUTDOWN_TIMEOUT /etc/s6/nginx 2>&1 > /dev/null || s6-svc -k  /etc/s6/nginx
+s6-svc -wD -d -T $PHP_SHUTDOWN_TIMEOUT /etc/s6/php 2>&1 > /dev/null || s6-svc -k /etc/s6/php
+s6-svc -wD -d -T 1000 /etc/s6/php-logger 2>&1 > /dev/null || s6-svc -k /etc/s6/php-logger
+s6-svscanctl -pt /etc/s6

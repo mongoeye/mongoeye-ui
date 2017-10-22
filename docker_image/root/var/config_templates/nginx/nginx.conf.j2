@@ -1,0 +1,76 @@
+# Docker specific config
+daemon off;
+user root;
+pid /var/run/nginx.pid;
+
+# Defines the number of worker processes
+worker_processes {{ .NGINX_WORKERS }};
+
+events {
+    # Sets the maximum number of simultaneous connections that can be opened by a worker process.
+    worker_connections {{ .NGINX_MAX_WORKER_CONNECTIONS }};
+}
+
+http {
+        # SENDFILE allows to transfer data from a file descriptor
+        # to another directly in kernel space and allows
+        # to save lots of resources
+        sendfile on;
+
+        # TCP_NOPUSH ensures that the packets are full before being sent
+        # to the client. This greatly reduces network overhead
+        # and speeds the way files are sent.
+        tcp_nopush on;
+
+        # TCP_NODELAY allows send the data as soon as it's available.
+        # This can an save you up to 0.2 second on every HTTP request.
+        tcp_nodelay on;
+
+        # TCP_KEEPALIVE_TIMEOUT assigns the timeout for keep-alive connections
+        # with the client. Connections with the client will be closed
+        # after this period of time.
+        keepalive_timeout 65;
+
+        # Include mime types, set types max count and set default type
+        types_hash_max_size 2048;
+        include /etc/nginx/mime.types;
+        default_type application/octet-stream;
+
+        # Disables emitting Nginx version in error messages
+        # and in the "Server" response header field.
+        server_tokens off;
+
+        # Maximum number of servers
+        server_names_hash_bucket_size 64;
+
+        # Enables or disables the use of the primary server name,
+        # specified by the server_name directive, in redirects issued by Nginx.
+        server_name_in_redirect off;
+
+        # Sets the maximum allowed size of the client request body.
+        # If the size in a request exceeds the configured value,
+        # the 413 (Request Entity Too Large) error is returned to the client.
+        client_max_body_size {{ .MAX_REQUEST_SIZE }};
+
+        # Log to stdout and stderr
+        log_format main '{{ .NGINX_ACCESS_LOG_FORMAT | replace "'" "\\'" }}';
+        access_log      /dev/stdout main;
+        error_log       /dev/stderr {{ .NGINX_ERROR_LOG_LEVEL }};
+
+        # Gzip
+        gzip               {{ if .NGINX_GZIP }}on{{ else }}off{{ end }};
+        gzip_disable      "MSIE [1-6].";
+        gzip_proxied      any;
+        gzip_buffers      16 8k;
+        gzip_comp_level   5;
+        gzip_http_version 1.0;
+        gzip_min_length   1280;
+        gzip_types        text/plain text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript image/x-icon image/bmp;
+        gzip_vary         on;
+
+        # Virtual Host Configs
+        include {{ .NGINX_SITES_DIR }}/*;
+}
+
+# Conf.d
+include /etc/nginx/conf.d/*.conf;

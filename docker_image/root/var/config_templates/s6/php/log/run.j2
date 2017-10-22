@@ -1,0 +1,6 @@
+#!/bin/sh
+
+while [ ! -d "/etc/s6/php-logger" ]; do sleep 0.1; done
+s6-svwait -U /etc/s6/php-logger
+
+exec cat > "$PHP_LOG_FILE" 2>&1

@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# FROM https://github.com/docker-library/php
+# MODIFIED
+
+set -e
+
+dir=/usr/src/php
+
+usage() {
+	echo "usage: $0 COMMAND"
+	echo
+	echo "Manage php source tarball lifecycle."
+	echo
+	echo "Commands:"
+	echo "   extract  extract php source tarball into directory $dir if not already done."
+	echo "   delete   delete extracted php source located into $dir if not already done."
+	echo
+}
+
+case "$1" in
+	extract)
+		if [ ! -f /usr/src/php.tar.gz ]; then
+		    curl -fSL "$PHP_RELEASE_URL" -o /usr/src/php.tar.gz
+		fi
+		mkdir -p "$dir"
+		if [ ! -f "$dir/.docker-extracted" ]; then
+			tar -xvzf /usr/src/php.tar.gz -C "$dir" --strip-components=1 > /dev/null
+			touch "$dir/.docker-extracted"
+		fi
+		;;
+
+	delete)
+		rm -rf "$dir"
+		;;
+
+	delete-archive)
+		rm -f /usr/src/php.tar.gz
+		;;
+
+	*)
+		usage
+		exit 1
+		;;
+esac

@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+
+s6-svwait -U /etc/s6/php
+
+# Wait for port
+{
+  while ! nc -z 127.0.0.1 80; do sleep 0.1; done
+  echo "\n" 1>&3 # service ready
+  echo "started"
+} &
+
+/usr/local/sbin/nginx 2>&1 &
+nginx_pid=$!
+
+wait_to_end () {
+  wait $nginx_pid
+  exit $?
+}
+
+trap '' EXIT
+trap '/bin/kill -s QUIT $nginx_pid; wait_to_end' INT TERM QUIT
+trap '/bin/kill -s USR2 $nginx_pid; wait_to_end' HUP
+
+wait_to_end

@@ -1,0 +1,13 @@
+# PHP PROXY
+server {
+        listen 80 default_server;
+        server_name  _;
+
+        root {{ .WWW_DIR }};
+
+        location / {
+            try_files $uri $uri/ /index.php$is_args$args;
+        }
+
+        include /etc/nginx/php.conf;
+}

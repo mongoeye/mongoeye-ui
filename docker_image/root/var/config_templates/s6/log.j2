@@ -1,0 +1,8 @@
+#!/bin/sh
+tag="$1"
+
+{{ if .LOG_TIME }}
+exec awk "{ print strftime(\"%Y-%m-%d %H:%M:%S\"), \"$tag:\", \$0; fflush(); }"
+{{ else }}
+exec awk "{ print \"$tag:\", \$0; fflush(); }"
+{{ end }}

@@ -1,0 +1,5 @@
+#!/bin/sh
+echo "received signal SIGHUP" | /etc/s6/log s6
+s6-svc -h /etc/s6/php
+s6-svc -h /etc/s6/nginx
+{{ .S6_SIGHUP_SCRIPT }}

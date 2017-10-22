@@ -1,0 +1,64 @@
+cgi.fix_pathinfo = 0
+
+; The default timezone used by all date/time functions.
+date.timezone = {{ .PHP_DATE_TIMEZONE }}
+
+; This determines whether errors should be printed to the screen as part
+; of the output or if they should be hidden from the user.
+display_errors = {{ .PHP_DISPLAY_ERRORS }}
+display_startup_errors = {{ .PHP_DISPLAY_STARTUP_ERRORS }}
+
+log_errors = true
+log_errors_max_len = 0
+ignore_repeated_errors = false
+ignore_repeated_source = false
+report_memleaks = {{ .PHP_REPORT_MEMLEAKS }}
+track_errors = {{ .PHP_TRACK_ERRORS }}
+error_log = {{ .PHP_LOG_FILE }}
+error_reporting = {{ .PHP_ERROR_REPORTING }}
+
+; This sets the maximum amount of memory
+; in bytes that a script is allowed to allocate.
+memory_limit = {{ .PHP_MEMORY_LIMIT }}
+
+; This sets the maximum time in seconds a script is allowed
+; to run before it is terminated by the parser.
+max_execution_time = {{ .PHP_MAX_EXECUTION_TIME }}
+
+; The maximum size of an uploaded file.
+upload_max_filesize = {{ .MAX_REQUEST_SIZE }}
+
+; Sets max size of post data allowed.
+; This setting also affects file upload.
+; To upload large files, this value must be larger than upload_max_filesize
+post_max_size = {{ .MAX_REQUEST_SIZE }}
+
+[opcache]
+; Enables the opcode cache. When disabled, code is not optimised or cached.
+opcache.enable={{ .PHP_OPCACHE_ENABLE }}
+
+; Enables the opcode cache for the CLI version of PHP.
+opcache.enable_cli={{ .PHP_OPCACHE_ENABLE_CLI }}
+
+; How often to check script timestamps for updates, in seconds.
+; 0 will result in OPcache checking for updates on every request.
+opcache.revalidate_freq=0
+
+; If enabled, OPcache will check for updated scripts
+; every opcache.revalidate_freq seconds. When this directive
+; is disabled, you must reset OPcache manually
+opcache.validate_timestamps={{ .PHP_OPCACHE_VALIDATE_TIMESTAMPS }}
+
+; The maximum number of keys (and therefore scripts) in the OPcache hash table.
+opcache.max_accelerated_files=7963
+
+; The size of the shared memory storage used by OPcache, in megabytes.
+opcache.memory_consumption={{ .PHP_OPCACHE_MEMORY_CONSUMPTION }}
+
+; The amount of memory used to store interned strings, in megabytes.
+opcache.interned_strings_buffer=16
+
+; If enabled, a fast shutdown sequence is used
+; that doesn't free each allocated block, but relies on the Zend Engine
+; memory manager to deallocate the entire set of request variables en masse.
+opcache.fast_shutdown=1

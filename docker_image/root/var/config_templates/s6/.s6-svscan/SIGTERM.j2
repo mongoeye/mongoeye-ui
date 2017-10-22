@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "received signal SIGTERM" | /etc/s6/log s6
+exec /etc/s6/.s6-svscan/stop
